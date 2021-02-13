@@ -14,6 +14,7 @@ const YoutubeForm = () => {
   const onSubmit = (values) => {
     console.log("Form Data", values);
   };
+
   const validate = (values) => {
     let errors = {};
     if (!values.name) {
@@ -33,7 +34,8 @@ const YoutubeForm = () => {
     onSubmit,
     validate,
   });
-  console.log(formik.errors);
+  console.log(formik.errors, formik.touched);
+
   return (
     <div>
       <Grid
@@ -51,9 +53,10 @@ const YoutubeForm = () => {
               id="name"
               name="name"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.name}
             />
-            {formik.errors.name ? (
+            {formik.errors.name && formik.touched.name ? (
               <div className="error">{formik.errors.name}</div>
             ) : null}
           </div>
@@ -64,9 +67,10 @@ const YoutubeForm = () => {
               id="email"
               name="email"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.email}
             />
-            {formik.errors.email ? (
+            {formik.errors.email && formik.touched.email ? (
               <div className="error">{formik.errors.email}</div>
             ) : null}
           </div>
@@ -76,9 +80,10 @@ const YoutubeForm = () => {
               type="text"
               id="channel"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.channel}
             />
-            {formik.errors.channel ? (
+            {formik.errors.channel && formik.touched.channel ? (
               <div className="error">{formik.errors.channel}</div>
             ) : null}
           </div>
